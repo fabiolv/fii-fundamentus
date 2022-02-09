@@ -1,14 +1,14 @@
 from flask import Blueprint, jsonify, request, Response
-from .fii_fundamentus import get_fii_info
+from .fii_com_br import get_fii_info
 from .utils import dict_to_xml
 
-fii_blueprint = Blueprint('fii_blueprint', __name__)
+fii_com_br_blueprint = Blueprint('fii_com_br_blueprint', __name__)
 
-@fii_blueprint.route('/fii/')
+@fii_com_br_blueprint.route('/fii/v2/')
 def fii_root():
     return f'Usage /fii/TICKER'
 
-@fii_blueprint.route('/fii/<ticker>')
+@fii_com_br_blueprint.route('/fii/v2/<ticker>')
 def get_ticker_info(ticker:str):
     format = request.args.get('format', default='JSON', type=str)
     print('-*'*20)
